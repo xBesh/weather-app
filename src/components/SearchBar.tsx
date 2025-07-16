@@ -9,12 +9,14 @@ interface SearchBarProps {
 }
 
 const mockSuggestions = [
+  'Sydney, Australia',
+  'Melbourne, Australia', 
+  'Brisbane, Australia',
   'New York, NY',
   'Los Angeles, CA',
-  'Chicago, IL',
-  'Houston, TX',
-  'Phoenix, AZ',
-  'Philadelphia, PA',
+  'London, UK',
+  'Tokyo, Japan',
+  'Paris, France',
 ];
 
 export const SearchBar: React.FC<SearchBarProps> = ({ onSearch, onCurrentLocation }) => {
@@ -65,7 +67,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onSearch, onCurrentLocatio
               type="text"
               value={query}
               onChange={handleInputChange}
-              placeholder="Search for a city..."
+              placeholder="Where should koala check the weather?"
               className="flex-1 bg-transparent text-white placeholder-white/60 outline-none"
             />
             {query && (
@@ -78,13 +80,16 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onSearch, onCurrentLocatio
               </button>
             )}
           </div>
-          <button
+          <motion.button
             type="button"
             onClick={onCurrentLocation}
             className="p-3 text-white/60 hover:text-white transition-colors"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            title="Find koala's current location"
           >
             <MapPin size={20} />
-          </button>
+          </motion.button>
         </form>
       </GlassCard>
 

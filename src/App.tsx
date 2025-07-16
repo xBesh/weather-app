@@ -8,6 +8,7 @@ import { AlertCard } from './components/AlertCard';
 import { LoadingSpinner } from './components/LoadingSpinner';
 import { ErrorMessage } from './components/ErrorMessage';
 import { ThemeToggle } from './components/ThemeToggle';
+import { KoalaLogo } from './components/KoalaLogo';
 
 function App() {
   const { weather, forecast, alerts, loading, error, fetchWeather, getCurrentLocation } = useWeather();
@@ -54,20 +55,13 @@ function App() {
       </div>
 
       <div className="relative z-10 container mx-auto px-4 py-8">
-        {/* Header */}
+        {/* Header with KoalaWeather branding */}
         <motion.header
           className="flex justify-between items-center mb-8"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <div>
-            <h1 className="text-3xl font-light text-white mb-2">
-              Weather App
-            </h1>
-            <p className="text-white/70">
-              Beautiful weather with glassmorphic design
-            </p>
-          </div>
+          <KoalaLogo />
           <ThemeToggle />
         </motion.header>
 
@@ -129,6 +123,17 @@ function App() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
         >
+          <div className="flex items-center justify-center space-x-2 mb-2">
+            <svg width="16" height="16" viewBox="0 0 100 100" className="text-white/40">
+              <circle cx="25" cy="25" r="12" fill="currentColor" opacity="0.9" />
+              <circle cx="75" cy="25" r="12" fill="currentColor" opacity="0.9" />
+              <circle cx="50" cy="50" r="20" fill="currentColor" />
+              <circle cx="42" cy="45" r="2" fill="currentColor" opacity="0.8" />
+              <circle cx="58" cy="45" r="2" fill="currentColor" opacity="0.8" />
+              <ellipse cx="50" cy="55" rx="5" ry="4" fill="currentColor" opacity="0.7" />
+            </svg>
+            <span>Made with love by KoalaWeather</span>
+          </div>
           <p>Built with React, Framer Motion & Tailwind CSS</p>
         </motion.footer>
       </div>

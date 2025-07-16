@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { WeatherData, ForecastDay, WeatherAlert } from '../types/weather';
 
-// Mock weather data for demonstration
+// Mock weather data for KoalaWeather demonstration
 const mockWeatherData: WeatherData = {
-  location: 'New York, NY',
+  location: 'Sydney, Australia',
   temperature: 22,
   condition: 'Partly Cloudy',
   humidity: 65,
@@ -28,8 +28,8 @@ const mockForecast: ForecastDay[] = [
 const mockAlerts: WeatherAlert[] = [
   {
     id: '1',
-    title: 'Heat Advisory',
-    description: 'High temperatures expected. Stay hydrated and avoid prolonged sun exposure.',
+    title: 'Koala Heat Advisory',
+    description: 'High temperatures expected. Perfect weather for koalas to stay in eucalyptus trees! Stay hydrated and avoid prolonged sun exposure.',
     severity: 'medium',
     timestamp: new Date()
   }
@@ -47,14 +47,14 @@ export const useWeather = () => {
     setError(null);
     
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Simulate API call - koala is working hard!
+      await new Promise(resolve => setTimeout(resolve, 1500));
       
       setWeather(location ? { ...mockWeatherData, location } : mockWeatherData);
       setForecast(mockForecast);
       setAlerts(mockAlerts);
     } catch (err) {
-      setError('Failed to fetch weather data');
+      setError('Koala couldn\'t fetch the weather data. Maybe the eucalyptus leaves are blocking the signal?');
     } finally {
       setLoading(false);
     }
@@ -65,10 +65,10 @@ export const useWeather = () => {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           // In a real app, you'd reverse geocode these coordinates
-          fetchWeather('Current Location');
+          fetchWeather('Koala\'s Current Location');
         },
         (error) => {
-          setError('Location access denied');
+          setError('Koala needs location access to provide local weather');
           fetchWeather();
         }
       );
