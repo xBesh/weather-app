@@ -4,6 +4,7 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       backdropBlur: {
@@ -26,10 +27,15 @@ export default {
       },
       backgroundImage: {
         'sunny': 'linear-gradient(135deg, #74b9ff 0%, #0984e3 100%)',
+        'sunny-dark': 'linear-gradient(135deg, #2d3436 0%, #636e72 100%)',
         'cloudy': 'linear-gradient(135deg, #636e72 0%, #2d3436 100%)',
+        'cloudy-dark': 'linear-gradient(135deg, #2d3436 0%, #000000 100%)',
         'rainy': 'linear-gradient(135deg, #74b9ff 0%, #0984e3 100%)',
+        'rainy-dark': 'linear-gradient(135deg, #2d3436 0%, #636e72 100%)',
         'snowy': 'linear-gradient(135deg, #ddd6fe 0%, #8b5cf6 100%)',
+        'snowy-dark': 'linear-gradient(135deg, #2d3436 0%, #636e72 100%)',
         'night': 'linear-gradient(135deg, #2d3436 0%, #636e72 100%)',
+        'night-dark': 'linear-gradient(135deg, #000000 0%, #2d3436 100%)',
       }
     },
   },

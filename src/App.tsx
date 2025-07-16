@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useWeather } from './hooks/useWeather';
+import { useTheme } from './hooks/useTheme';
 import { SearchBar } from './components/SearchBar';
 import { WeatherCard } from './components/WeatherCard';
 import { ForecastCard } from './components/ForecastCard';
@@ -12,20 +13,23 @@ import { KoalaLogo } from './components/KoalaLogo';
 
 function App() {
   const { weather, forecast, alerts, loading, error, fetchWeather, getCurrentLocation } = useWeather();
+  const { theme } = useTheme();
 
   const getBackgroundClass = (condition?: string) => {
-    if (!condition) return 'bg-sunny';
+    if (!condition) return theme === 'dark' ? 'bg-sunny-dark' : 'bg-sunny';
+    
+    const suffix = theme === 'dark' ? '-dark' : '';
     
     switch (condition) {
-      case 'sunny': return 'bg-sunny';
-      case 'partly-cloudy': return 'bg-cloudy';
-      case 'cloudy': return 'bg-cloudy';
-      case 'rainy': return 'bg-rainy';
-      case 'drizzle': return 'bg-rainy';
-      case 'snowy': return 'bg-snowy';
-      case 'thunderstorm': return 'bg-night';
-      case 'night': return 'bg-night';
-      default: return 'bg-sunny';
+      case 'sunny': return `bg-sunny${suffix}`;
+      case 'partly-cloudy': return `bg-cloudy${suffix}`;
+      case 'cloudy': return `bg-cloudy${suffix}`;
+      case 'rainy': return `bg-rainy${suffix}`;
+      case 'drizzle': return `bg-rainy${suffix}`;
+      case 'snowy': return `bg-snowy${suffix}`;
+      case 'thunderstorm': return `bg-night${suffix}`;
+      case 'night': return `bg-night${suffix}`;
+      default: return theme === 'dark' ? 'bg-sunny-dark' : 'bg-sunny';
     }
   };
 
@@ -36,7 +40,9 @@ function App() {
         {[...Array(20)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-2 h-2 bg-white/10 rounded-full"
+            className={`absolute w-2 h-2 rounded-full ${
+              theme === 'dark' ? 'bg-white/20' : 'bg-white/10'
+            }`}
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
@@ -118,13 +124,15 @@ function App() {
 
         {/* Footer */}
         <motion.footer
-          className="text-center mt-16 text-white/50"
+          className={`text-center mt-16 ${
+            theme === 'dark' ? 'text-white/70' : 'text-white/50'
+          }`}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
         >
           <div className="flex items-center justify-center space-x-2 mb-2">
-            <svg width="16" height="16" viewBox="0 0 100 100" className="text-white/40">
+            <svg width="16" height="16" viewBox="0 0 100 100" className={theme === 'dark' ? 'text-white/60' : 'text-white/40'}>
               <circle cx="25" cy="25" r="12" fill="currentColor" opacity="0.9" />
               <circle cx="75" cy="25" r="12" fill="currentColor" opacity="0.9" />
               <circle cx="50" cy="50" r="20" fill="currentColor" />
